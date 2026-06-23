@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { getAllAuthorsController } = require('../controllers/authorsController');
-const { getAuthorByIdController } = require('../controllers/authorsController');
-
+const { getAllAuthorsController,
+    getAuthorByIdController,
+    postAuthorController } = require('../controllers/authorsController');
+router.post('/', postAuthorController);
 
 router.get('/', getAllAuthorsController);
 router.get('/:id', getAuthorByIdController);

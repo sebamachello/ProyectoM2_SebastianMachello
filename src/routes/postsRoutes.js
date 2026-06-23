@@ -1,15 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { getAllPosts } = require('../services/postsService');
+const { getAllPostsController,
+     getPostByIdController,
+     createPostController } = require('../controllers/postsController');
 
-router.get("/", async (req, res) => {
-    try {
-        const posts = await getAllPosts();
-        res.json(posts);
-    } catch (error) {
-        console.error("Error al obtener los posts:", error);
-        res.status(500).json({ error: "Error al obtener los posts" });
-    }
-});
+
+router.post('/', createPostController);
+
+router.get('/:id', getPostByIdController);
+
+router.get('/', getAllPostsController);
 
 module.exports = router;
