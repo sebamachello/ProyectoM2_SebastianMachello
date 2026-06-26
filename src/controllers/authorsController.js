@@ -1,17 +1,16 @@
 const { getAllAuthors, getAuthorById, deleteAuthor, postAuthor, putAuthor } = require('../services/authorsService'); 
 
-const getAllAuthorsController = async (req, res) => {
+const getAllAuthorsController = async (req, res, next) => {
     try {
         const authors = await getAllAuthors();
         res.json(authors);
     } catch (error) {
-        console.error("Error al obtener los autores:", error);
-        res.status(500).json({ error: "Error al obtener los autores" });
+        next(error); // Pasar el error al middleware de manejo de errores
     }
 
 };
 
-const getAuthorByIdController = async (req, res) => {
+const getAuthorByIdController = async (req, res, next) => {
     const { id } = req.params;
     try {
         const author = await getAuthorById(id);
@@ -20,12 +19,11 @@ const getAuthorByIdController = async (req, res) => {
         }
         res.json(author);
     } catch (error) {
-        console.error("Error al obtener el autor:", error);
-        res.status(500).json({ error: "Error al obtener el autor" });
+        next(error); // Pasar el error al middleware de manejo de errores
     }
 };
 
-const postAuthorController = async (req, res) => {
+const postAuthorController = async (req, res, next) => {
     const { name, email } = req.body;
 
     if (!name || !email) {
@@ -35,12 +33,11 @@ const postAuthorController = async (req, res) => {
         const newAuthor = await postAuthor({ name, email });
         res.status(201).json(newAuthor);
     } catch (error) {
-        console.error("Error al crear el autor:", error);
-        res.status(500).json({ error: "Error al crear el autor" });
+        next(error); // Pasar el error al middleware de manejo de errores
     }
 };
 
-const putAuthorController = async (req, res) => {
+const putAuthorController = async (req, res, next) => {
     const { id } = req.params;
     const { name, email } = req.body;
 
@@ -56,25 +53,22 @@ const putAuthorController = async (req, res) => {
         }
         res.json(updatedAuthor);
     } catch (error) {
-        console.error("Error al actualizar el autor:", error);
-        res.status(500).json({ error: "Error al actualizar el autor" });
+        next(error); // Pasar el error al middleware de manejo de errores
     }
 };
 
-const deleteAuthorController = async (req, res) => {
+const deleteAuthorController = async (req, res, next) => {
     const { id } = req.params;
-    if (!id) {
-        return res.status(400).json({ error: "Falta el ID del autor" });
-    }
+
     try {
         const deletedAuthor = await deleteAuthor(id);
+        
         if (!deletedAuthor) {
             return res.status(404).json({ error: "Autor no encontrado" });
         }
         res.json(deletedAuthor);
     } catch (error) {
-        console.error("Error al eliminar el autor:", error);
-        res.status(500).json({ error: "Error al eliminar el autor" });
+        next(error); // Pasar el error al middleware de manejo de errores
     }
 };
 
