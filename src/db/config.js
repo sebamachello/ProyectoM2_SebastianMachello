@@ -1,3 +1,9 @@
+const path = require("path");
+require("dotenv").config({
+    path: path.resolve(process.cwd(), ".env"),
+    quiet: true,
+});
+
 const { Pool } = require('pg');
 
 const pool = new Pool({
