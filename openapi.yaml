@@ -1,0 +1,183 @@
+openapi: 3.0.0
+
+info:
+  title: MiniBlog API
+  version: 1.0.0
+  description: API REST para gestionar authors y posts usando Node.js, Express y PostgreSQL.
+
+servers:
+  - url: http://localhost:3000
+    description: Servidor local
+
+paths:
+  /authors:
+    get:
+      summary: Obtener todos los autores
+      responses:
+        '200':
+          description: Lista de autores obtenida correctamente.
+        '500':
+          description: Error interno del servidor.
+
+    post:
+      summary: Crear un nuevo autor
+      requestBody:
+        required: true
+      responses:
+        '201':
+          description: Autor creado correctamente.
+        '400':
+          description: Faltan datos obligatorios.
+        '500':
+          description: Error interno del servidor.
+
+  /authors/{id}:
+    get:
+      summary: Obtener un autor por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID del autor
+      responses:
+        '200':
+          description: Autor obtenido correctamente.
+        '404':
+          description: Autor no encontrado.
+        '500':
+          description: Error interno del servidor.
+
+    put:
+      summary: Actualizar un autor por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID del autor
+      requestBody:
+        required: true
+      responses:
+        '200':
+          description: Autor actualizado correctamente.
+        '400':
+          description: Faltan datos obligatorios.
+        '404':
+          description: Autor no encontrado.
+        '500':
+          description: Error interno del servidor.
+
+    delete:
+      summary: Eliminar un autor por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID del autor
+      responses:
+        '200':
+          description: Autor eliminado correctamente.
+        '404':
+          description: Autor no encontrado.
+        '500':
+          description: Error interno del servidor.
+
+  /posts:
+    get:
+      summary: Obtener todos los posts
+      responses:
+        '200':
+          description: Lista de posts obtenida correctamente.
+        '500':
+          description: Error interno del servidor.
+
+    post:
+      summary: Crear un nuevo post
+      requestBody:
+        required: true
+      responses:
+        '201':
+          description: Post creado correctamente.
+        '400':
+          description: Todos los campos son obligatorios.
+        '500':
+          description: Error interno del servidor.
+
+  /posts/{id}:
+    get:
+      summary: Obtener un post por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID del post
+      responses:
+        '200':
+          description: Post obtenido correctamente.
+        '404':
+          description: Post no encontrado.
+        '500':
+          description: Error interno del servidor.
+
+    put:
+      summary: Actualizar un post por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID del post
+      requestBody:
+        required: true
+      responses:
+        '200':
+          description: Post actualizado correctamente.
+        '400':
+          description: Todos los campos son obligatorios.
+        '404':
+          description: Post no encontrado.
+        '500':
+          description: Error interno del servidor.
+
+    delete:
+      summary: Eliminar un post por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID del post
+      responses:
+        '200':
+          description: Post eliminado correctamente.
+        '404':
+          description: Post no encontrado.
+        '500':
+          description: Error interno del servidor.
+
+  /posts/author/{authorId}:
+    get:
+      summary: Obtener los posts de un autor
+      parameters:
+        - in: path
+          name: authorId
+          required: true
+          schema:
+            type: integer
+          description: ID del autor
+      responses:
+        '200':
+          description: Lista de posts del autor obtenida correctamente.
+        '404':
+          description: Autor no encontrado.
+        '500':
+          description: Error interno del servidor.
