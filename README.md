@@ -69,6 +69,8 @@ PORT=3000
 
 3. Ejecutar el script para cargar los datos iniciales:
 
+
+
 ```bash
 \i src/db/seed.sql
 ```
@@ -153,6 +155,20 @@ El proyecto está preparado para desplegarse en Railway.
 https://proyectom2sebastianmachello-production.up.railway.app
 
 ---
+## Uso de Inteligencia Artificial
+
+Durante el desarrollo del proyecto se utilizó ChatGPT como herramienta de apoyo para:
+
+- Comprender errores de Node.js, Express, PostgreSQL, Jest y Railway.
+- Repasar conceptos de arquitectura backend.
+- Guiar la implementación de rutas, controladores, servicios y middlewares.
+- Entender y aplicar tests con Jest y Supertest.
+- Revisar la documentación OpenAPI.
+- Mejorar la estructura del README.
+- Resolver problemas de deploy en Railway.
+
+El código fue escrito, probado y adaptado manualmente durante el desarrollo del proyecto.
+
 
 ## Autor
 
