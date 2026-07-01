@@ -149,7 +149,8 @@ Los tests fueron desarrollados utilizando Jest y Supertest para verificar el cor
 
 El proyecto está preparado para desplegarse en Railway.
 
-**URL de la aplicación:** _(Completar luego del deploy.)_
+**URL de la aplicación:**
+https://proyectom2sebastianmachello-production.up.railway.app
 
 ---
 
